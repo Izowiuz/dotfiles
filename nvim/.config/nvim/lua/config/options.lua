@@ -44,3 +44,13 @@ opt.completeopt = { "menu", "menuone", "noselect" }  -- nicer completion menu
 -- === Misc ===
 opt.showmode = false           -- don't show "-- INSERT --" (statusline plugin handles it)
 opt.laststatus = 3             -- single global statusline instead of per-window
+
+-- === Whitespace visualization ===
+opt.list = true                -- show invisible characters
+opt.listchars = {
+  tab = "→ ",                  -- tab character
+  trail = "·",                 -- trailing spaces
+  extends = "›",               -- line extends beyond screen (when wrap=false)
+  precedes = "‹",              -- line precedes screen
+  nbsp = "␣",                  -- non-breaking space (often a hidden bug)
+}
