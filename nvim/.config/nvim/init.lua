@@ -14,6 +14,3 @@ require("config.autocmds")
 
 -- plugin manager
 require("config.lazy")
-
--- treesitter
-require("config.treesitter")
