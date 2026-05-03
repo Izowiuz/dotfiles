@@ -22,4 +22,3 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase split wi
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
---map("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "Show all keymaps" })
