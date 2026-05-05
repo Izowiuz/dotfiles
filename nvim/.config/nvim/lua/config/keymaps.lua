@@ -22,5 +22,5 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase split wi
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- === Diagnostics navigation ===
-map("n", "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" })
-map("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Previous diagnostic" })
+map("n", "]d", function() vim.diagnostic.jump({ count =  1, float = true }) end, { desc = "Next diagnostic" })
+map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Previous diagnostic" })

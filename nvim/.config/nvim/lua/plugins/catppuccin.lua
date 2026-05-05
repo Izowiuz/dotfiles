@@ -1,8 +1,8 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
-  priority = 1000,
-  lazy = false,
+  priority = 900,
+  lazy = true,         -- loads on demand via :colorscheme catppuccin
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",

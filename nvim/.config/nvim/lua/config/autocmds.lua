@@ -1,7 +1,11 @@
--- Strip trailing whitespace on save
+-- Strip trailing whitespace on save.
+-- Skip filetypes where trailing whitespace carries meaning:
+--   markdown (two spaces = <br>), diff/gitcommit (patch context).
+local strip_skip = { markdown = true, diff = true, gitcommit = true, mail = true }
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    if strip_skip[vim.bo.filetype] then return end
     local save = vim.fn.winsaveview()  -- remember cursor position
     vim.cmd([[%s/\s\+$//e]])           -- :s replaces, e flag = no error if no match
     vim.fn.winrestview(save)            -- restore cursor
