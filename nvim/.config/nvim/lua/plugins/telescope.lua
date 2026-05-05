@@ -14,12 +14,17 @@ return {
   },
   cmd = "Telescope",
   keys = {
+    -- File / find
     { "<leader>ff", "<cmd>Telescope find_files<CR>",  desc = "Find files" },
-    { "<leader>fg", "<cmd>Telescope live_grep<CR>",   desc = "Grep in project" },
     { "<leader>fb", "<cmd>Telescope buffers<CR>",     desc = "List open buffers" },
-    { "<leader>fh", "<cmd>Telescope help_tags<CR>",   desc = "Search help" },
     { "<leader>fr", "<cmd>Telescope oldfiles<CR>",    desc = "Recent files" },
-    { "<leader>fc", "<cmd>Telescope colorscheme<CR>", desc = "Switch colorscheme" },
+    -- Search
+    { "<leader>sg", "<cmd>Telescope live_grep<CR>",   desc = "Grep in project" },
+    { "<leader>sh", "<cmd>Telescope help_tags<CR>",   desc = "Search help" },
+    { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "Search word under cursor" },
+    { "<leader>sR", "<cmd>Telescope resume<CR>",      desc = "Resume last picker" },
+    -- UI
+    { "<leader>uC", "<cmd>Telescope colorscheme<CR>", desc = "Switch colorscheme" },
   },
   config = function()
     local telescope = require("telescope")
@@ -30,6 +35,11 @@ return {
           horizontal = { preview_width = 0.55 },
         },
         file_ignore_patterns = { "node_modules", ".git/", "build/", "%.o" },
+      },
+      pickers = {
+        find_files = {
+            hidden = true,                    -- include dotfiles/dotdirectories
+        },
       },
     })
     pcall(telescope.load_extension, "fzf")  -- enable fzf extension if compiled

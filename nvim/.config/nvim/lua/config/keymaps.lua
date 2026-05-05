@@ -1,10 +1,10 @@
 local map = vim.keymap.set
 
 -- === Window splits ===
-map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
-map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+map("n", "<leader>wv", "<C-w>v",        { desc = "Split window vertically" })
+map("n", "<leader>ws", "<C-w>s",        { desc = "Split window horizontally" })
+map("n", "<leader>w=", "<C-w>=",        { desc = "Make splits equal size" })
+map("n", "<leader>wd", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- === Move between splits ===
 map("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
@@ -20,5 +20,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase split wi
 
 -- === Quality of life ===
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
-map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
-map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+
+-- === Diagnostics navigation ===
+map("n", "]d", function() vim.diagnostic.goto_next() end, { desc = "Next diagnostic" })
+map("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Previous diagnostic" })

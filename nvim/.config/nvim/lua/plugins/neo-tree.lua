@@ -19,7 +19,9 @@ return {
         width = 32,
       },
       filesystem = {
-        follow_current_file = { enabled = true },
+        follow_current_file = {
+          enabled = true
+        },
         use_libuv_file_watcher = true,
         filtered_items = {
           visible = false,
@@ -28,7 +30,10 @@ return {
         },
       },
       default_component_configs = {
-        indent = { with_markers = true },
+        indent = {
+          with_markers = true,
+          with_expanders = true
+        },
         git_status = {
           symbols = {
             added     = "+",

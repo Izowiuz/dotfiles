@@ -5,16 +5,19 @@ return {
   event = "VeryLazy",
   keys = {
     -- Navigation
-    { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>",    desc = "Previous buffer" },
-    { "<S-l>",      "<cmd>BufferLineCycleNext<CR>",    desc = "Next buffer" },
-    { "<leader>bp", "<cmd>BufferLineTogglePin<CR>",    desc = "Pin/unpin buffer" },
+    { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>",            desc = "Previous buffer" },
+    { "<S-l>",      "<cmd>BufferLineCycleNext<CR>",            desc = "Next buffer" },
+    -- Close
+    { "<leader>bd", "<cmd>bdelete<CR>",                        desc = "Delete current buffer" },
+    { "<leader>bo", "<cmd>BufferLineCloseOthers<CR>",          desc = "Close other buffers" },
+    { "<leader>br", "<cmd>BufferLineCloseRight<CR>",           desc = "Close buffers to the right" },
+    { "<leader>bl", "<cmd>BufferLineCloseLeft<CR>",            desc = "Close buffers to the left" },
     { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", desc = "Close non-pinned buffers" },
-    { "<leader>bo", "<cmd>BufferLineCloseOthers<CR>",  desc = "Close other buffers" },
-    { "<leader>br", "<cmd>BufferLineCloseRight<CR>",   desc = "Close buffers to the right" },
-    { "<leader>bl", "<cmd>BufferLineCloseLeft<CR>",    desc = "Close buffers to the left" },
-    -- Direct picking
-    { "<leader>bb", "<cmd>BufferLinePick<CR>",         desc = "Pick buffer (jump letter)" },
-    { "<leader>bd", "<cmd>BufferLinePickClose<CR>",    desc = "Pick buffer to close" },
+    -- Pin
+    { "<leader>bp", "<cmd>BufferLineTogglePin<CR>",            desc = "Pin/unpin buffer" },
+    -- Pick
+    { "<leader>bb", "<cmd>BufferLinePick<CR>",                 desc = "Pick buffer (jump letter)" },
+    { "<leader>bD", "<cmd>BufferLinePickClose<CR>",            desc = "Pick buffer to close" },
   },
   opts = {
     options = {
