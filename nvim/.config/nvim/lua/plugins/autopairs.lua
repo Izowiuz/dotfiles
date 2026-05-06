@@ -1,11 +1,10 @@
 return {
-  "windwp/nvim-autopairs",
-  event = "InsertEnter",
-  opts = {
-    check_ts = true,
-    fast_wrap = {
-      map = "<M-e>",
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+        check_ts = true,
+        fast_wrap = {
+            map = "<M-e>",
+        },
     },
-  },
 }
-
