@@ -28,13 +28,25 @@ opt.swapfile = false           -- no .swp files
 opt.backup = false             -- no backup files
 opt.undofile = true            -- persistent undo across sessions
 opt.undodir = vim.fn.stdpath("data") .. "/undo"
+opt.fileformats = "unix,dos"   -- prefer Unix line endings, handle Windows CRLF transparently
 
 -- === Editor behavior ===
 opt.mouse = "a"                -- enable mouse in all modes
+
+-- Windows: win32yank (bundled with the nvim installer) handles CRLF conversion
+if vim.g.is_win then
+  vim.g.clipboard = {
+    name = "win32yank",
+    copy  = { ["+"] = "win32yank -i --crlf", ["*"] = "win32yank -i --crlf" },
+    paste = { ["+"] = "win32yank -o --lf",   ["*"] = "win32yank -o --lf" },
+    cache_enabled = 0,
+  }
+end
 opt.clipboard = "unnamedplus"  -- use system clipboard for yank/paste
 opt.splitright = true          -- vertical splits open to the right
 opt.splitbelow = true          -- horizontal splits open below
 opt.wrap = false               -- don't wrap long lines
+opt.wrapmargin = 2             -- wrap 2 chars from the right edge (breathing room)
 opt.updatetime = 250           -- faster updates (CursorHold, diagnostics)
 opt.timeoutlen = 400           -- how long to wait for a key sequence
 
@@ -44,6 +56,16 @@ opt.completeopt = { "menu", "menuone", "noselect" }  -- nicer completion menu
 -- === Misc ===
 opt.showmode = false           -- don't show "-- INSERT --" (statusline plugin handles it)
 opt.laststatus = 3             -- single global statusline instead of per-window
+
+-- Windows: use PowerShell Core instead of cmd.exe for :terminal and shell commands
+if vim.g.is_win then
+  opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  opt.shellpipe  = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  opt.shellquote = ""
+  opt.shellxquote = ""
+end
 
 -- === Whitespace visualization ===
 opt.list = true                -- show invisible characters

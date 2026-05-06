@@ -20,6 +20,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase split wi
 
 -- === Quality of life ===
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+map("n", "<leader>uw", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
 
 -- === Diagnostics navigation ===
 map("n", "]d", function() vim.diagnostic.jump({ count =  1, float = true }) end, { desc = "Next diagnostic" })

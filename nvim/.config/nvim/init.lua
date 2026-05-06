@@ -3,6 +3,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- platform detection
+vim.g.is_win = vim.fn.has("win32") == 1
+
 -- configs
 require("config.options")
 

@@ -1,15 +1,11 @@
 return {
   'saghen/blink.cmp',
+  version = '*', -- download pre-built binaries for the fuzzy matcher (no Rust needed)
   dependencies = {
     'saghen/blink.lib',
     -- optional: provides snippets for the snippet source
     'rafamadriz/friendly-snippets',
   },
-  build = function()
-    -- build the fuzzy matcher, wait up to 60 seconds
-    -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
-    require('blink.cmp').build():wait(60000)
-  end,
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
