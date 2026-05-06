@@ -72,7 +72,8 @@ end
 opt.list = true -- show invisible characters
 opt.listchars = {
     tab = "→ ", -- tab character
-    trail = "·", -- trailing spaces
+    space = "·", -- all spaces
+    trail = "·", -- trailing spaces (highlighted differently by colorscheme)
     extends = "›", -- line extends beyond screen (when wrap=false)
     precedes = "‹", -- line precedes screen
     nbsp = "␣", -- non-breaking space (often a hidden bug)
