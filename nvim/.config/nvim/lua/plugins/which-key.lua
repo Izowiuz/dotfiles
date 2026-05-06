@@ -11,6 +11,7 @@ return {
             -- Group definitions: friendly names for leader prefixes
             { "<leader>b", group = "buffers" },
             { "<leader>c", group = "code" },
+            { "<leader>cm", group = "cmake" },
             { "<leader>f", group = "file / find" },
             { "<leader>g", group = "git" },
             { "<leader>gh", group = "hunks" },
@@ -18,6 +19,7 @@ return {
             { "<leader>s", group = "search" },
             { "<leader>u", group = "ui" },
             { "<leader>w", group = "windows" },
+            { "<leader>x", group = "diagnostics / quickfix" },
             -- Standalone descriptions
             { "<leader>e", desc = "toggle file tree" },
             { "<leader>o", desc = "focus file tree" },

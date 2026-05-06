@@ -8,6 +8,7 @@ opt.signcolumn = "yes" -- always show sign column (LSP, git) so text doesn't shi
 opt.termguicolors = true -- enable 24-bit colors (required by most colorschemes)
 opt.scrolloff = 8 -- keep 8 lines visible above/below cursor
 opt.sidescrolloff = 8 -- same but horizontally
+opt.fillchars = { eob = " " } -- hide '~' on empty lines past end of buffer
 
 -- === Indentation ===
 opt.expandtab = true -- use spaces instead of tabs

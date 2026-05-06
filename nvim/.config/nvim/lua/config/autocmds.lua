@@ -22,3 +22,18 @@ vim.api.nvim_create_autocmd("TermOpen", {
         end
     end,
 })
+
+-- Show cursorline only in the active window (visual focus indicator).
+local focus = vim.api.nvim_create_augroup("FocusedCursorline", { clear = true })
+vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
+    group = focus,
+    callback = function()
+        vim.wo.cursorline = true
+    end,
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+    group = focus,
+    callback = function()
+        vim.wo.cursorline = false
+    end,
+})

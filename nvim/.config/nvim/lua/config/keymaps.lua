@@ -29,3 +29,9 @@ end, { desc = "Next diagnostic" })
 map("n", "[d", function()
     vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Previous diagnostic" })
+
+-- === Quickfix list navigation ===
+map("n", "]q", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
+map("n", "[q", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
+map("n", "<leader>xq", "<cmd>copen<CR>", { desc = "Open quickfix list" })
+map("n", "<leader>xQ", "<cmd>cclose<CR>", { desc = "Close quickfix list" })
