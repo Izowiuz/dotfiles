@@ -6,14 +6,11 @@ return {
         "nvim-tree/nvim-web-devicons", -- file icons
         {
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = vim.fn.has("win32") == 1
+            build = vim.g.is_win
                     and 'cmd /c "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"'
                 or "make",
             cond = function()
-                if vim.fn.has("win32") == 1 then
-                    return vim.fn.executable("cmake") == 1
-                end
-                return vim.fn.executable("make") == 1
+                return vim.fn.executable(vim.g.is_win and "cmake" or "make") == 1
             end,
         },
     },
