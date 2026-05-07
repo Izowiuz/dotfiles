@@ -25,6 +25,8 @@ return {
         { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
         { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "Search word under cursor" },
         { "<leader>sR", "<cmd>Telescope resume<CR>", desc = "Resume last picker" },
+        { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "Command palette" },
+        { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
         -- UI
         { "<leader>uC", "<cmd>Telescope colorscheme<CR>", desc = "Switch colorscheme" },
     },
