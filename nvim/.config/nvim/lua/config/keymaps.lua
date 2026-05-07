@@ -5,6 +5,15 @@ map("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>ws", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<leader>w=", "<C-w>=", { desc = "Make splits equal size" })
 map("n", "<leader>wd", "<cmd>close<CR>", { desc = "Close current split" })
+map("n", "<leader>wz", function()
+    if vim.t.zoomed then
+        vim.cmd("wincmd =")
+        vim.t.zoomed = false
+    else
+        vim.cmd("wincmd _ | wincmd |")
+        vim.t.zoomed = true
+    end
+end, { desc = "Toggle zoom (maximize) split" })
 
 -- === Move between splits ===
 map("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
