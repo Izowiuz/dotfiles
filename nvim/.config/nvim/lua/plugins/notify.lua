@@ -18,17 +18,17 @@ return {
         timeout = 3000,
         stages = "fade", -- fade, slide, fade_in_slide_out, static
         render = "default", -- default, minimal, compact, wrapped-compact
-        top_down = true, -- toasty od góry (dół zajęty przez overseer/quickfix)
+        top_down = true, -- show toasts from the top (bottom is used by overseer/quickfix)
         max_height = function()
             return math.floor(vim.o.lines * 0.75)
         end,
         max_width = function()
             return math.floor(vim.o.columns * 0.4)
         end,
-        background_colour = "#1e1e2e", -- fallback dla terminali bez pseudo-transparency
+        background_colour = "#1e1e2e", -- fallback for terminals without pseudo-transparency
     },
     init = function()
-        -- Lazy-loading: pierwsze vim.notify() załaduje plugin i ustawi go jako notifier
+        -- Lazy-load: the first vim.notify() call loads the plugin and routes through it.
         vim.notify = function(...)
             return require("notify")(...)
         end

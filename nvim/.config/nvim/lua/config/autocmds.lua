@@ -23,6 +23,29 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end,
 })
 
+-- Overseer task buffers use nvim_open_term (not :terminal), so TermOpen doesn't fire.
+-- Bind <Esc> on BufEnter when the buffer is registered as an overseer task output.
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function(args)
+        if not package.loaded.overseer then
+            return
+        end
+        local ok, tasks = pcall(require("overseer").list_tasks)
+        if not ok then
+            return
+        end
+        for _, task in ipairs(tasks) do
+            if task.strategy and task.strategy.bufnr == args.buf then
+                vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {
+                    buffer = args.buf,
+                    desc = "Exit terminal mode",
+                })
+                return
+            end
+        end
+    end,
+})
+
 -- Show cursorline only in the active window (visual focus indicator).
 local focus = vim.api.nvim_create_augroup("FocusedCursorline", { clear = true })
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
