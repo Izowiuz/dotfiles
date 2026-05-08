@@ -30,17 +30,6 @@ return {
     config = function()
         require("neo-tree").setup({
             close_if_last_window = false,
-            popup_border_style = "rounded",
-            source_selector = {
-                winbar = true,
-                separator = { left = "▏", right = " " },
-                content_layout = "center",
-                sources = {
-                    { source = "filesystem", display_name = "󰉓 Files" },
-                    { source = "buffers", display_name = "󰈙 Buffers" },
-                    { source = "git_status", display_name = "󰊢 Git" },
-                },
-            },
             window = {
                 position = "left",
                 width = 32,

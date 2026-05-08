@@ -21,29 +21,13 @@ return {
     },
     opts = {
         options = {
-            mode = "buffers", -- "buffers" or "tabs"; "buffers" = like VSCode tabs
-            diagnostics = "nvim_lsp", -- show LSP error/warn count on each buffer
-            diagnostics_indicator = function(count, level)
-                local icon = level:match("error") and " " or " "
-                return " " .. icon .. count
-            end,
             offsets = {
                 {
                     filetype = "neo-tree",
-                    text = "Explorer",
-                    highlight = "Directory",
+                    text = "",
                     text_align = "left",
-                    separator = true, -- vertical separator between offset and tabs
+                    separator = false, -- vertical separator between offset and tabs
                 },
-            },
-            separator_style = "slant", -- "slant" | "thick" | "thin" | { "|", "|" }
-            show_buffer_close_icons = true,
-            show_close_icon = false, -- the global "close all" icon at the right
-            always_show_bufferline = true,
-            hover = {
-                enabled = true,
-                delay = 200,
-                reveal = { "close" }, -- show close button on hover
             },
         },
     },

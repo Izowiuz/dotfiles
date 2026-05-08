@@ -1,11 +1,11 @@
 return {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 900,
+    priority = 9000,
     lazy = true, -- loads on demand via :colorscheme catppuccin
     config = function()
         require("catppuccin").setup({
-            flavour = "mocha",
+            flavour = "frappe",
             integrations = {
                 treesitter = true,
                 native_lsp = { enabled = true },
