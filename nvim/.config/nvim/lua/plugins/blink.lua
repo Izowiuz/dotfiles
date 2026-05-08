@@ -22,7 +22,16 @@ return {
         -- C-k: Toggle signature help (if signature.enabled = true)
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        keymap = { preset = "default" },
+        keymap = {
+            preset = "super-tab",
+            -- Navigate the completion menu with Shift+J/K (next/prev). When the
+            -- menu is closed, 'fallback' lets the keys type 'J'/'K' as normal.
+            ["<S-j>"] = { "select_next", "fallback" },
+            ["<S-k>"] = { "select_prev", "fallback" },
+            -- Enter accepts the highlighted suggestion; falls back to a real
+            -- newline when the menu is closed.
+            ["<CR>"] = { "accept", "fallback" },
+        },
 
         -- (Default) Only show the documentation popup when manually triggered
         completion = { documentation = { auto_show = false } },
