@@ -24,11 +24,45 @@ return {
                 map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
                 map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
                 map("n", "<leader>cd", vim.diagnostic.open_float, "Show diagnostic at cursor")
+                map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+
+                -- Toggle inlay hints (parameter names + inferred types) for this buffer
+                if vim.lsp.inlay_hint then
+                    map("n", "<leader>uh", function()
+                        local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+                        vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+                    end, "Toggle inlay hints")
+                end
+
+                -- clangd-specific: switch between source and header via LSP request
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                if client and client.name == "clangd" then
+                    map("n", "<leader>ch", function()
+                        local params = vim.lsp.util.make_text_document_params(bufnr)
+                        client:request("textDocument/switchSourceHeader", params, function(err, result)
+                            if err then
+                                vim.notify("clangd: " .. tostring(err), vim.log.levels.ERROR)
+                            elseif result then
+                                vim.cmd.edit(vim.uri_to_fname(result))
+                            else
+                                vim.notify("No matching source/header file", vim.log.levels.WARN)
+                            end
+                        end, bufnr)
+                    end, "Switch source/header")
+                end
             end,
         })
 
         vim.lsp.config("clangd", {
-            cmd = { "clangd", "--background-index", "--clang-tidy" },
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--header-insertion=iwyu", -- auto-insert needed headers as you type
+                "--completion-style=detailed", -- show full signatures in completion
+                "--function-arg-placeholders", -- placeholders for fn args after completion
+                "--cross-file-rename", -- rename refactor works across translation units
+            },
         })
         vim.lsp.enable("clangd")
 

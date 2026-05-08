@@ -20,6 +20,7 @@ return {
             { "<leader>u", group = "ui" },
             { "<leader>uN", desc = "Notification history" },
             { "<leader>uO", desc = "Focus task list" },
+            { "<leader>uh", desc = "Toggle inlay hints" },
             { "<leader>un", desc = "Dismiss notifications" },
             { "<leader>w", group = "windows" },
             { "<leader>x", group = "diagnostics / quickfix" },

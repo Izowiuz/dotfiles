@@ -23,21 +23,36 @@ return {
                         task_bufs[task.strategy.bufnr] = true
                     end
                 end
-                local closed = false
+                local function is_overseer(buf)
+                    return vim.bo[buf].filetype == "OverseerList" or task_bufs[buf]
+                end
+
+                local to_close_set, to_close_list = {}, {}
                 for _, win in ipairs(vim.api.nvim_list_wins()) do
-                    if vim.api.nvim_win_is_valid(win) then
-                        local buf = vim.api.nvim_win_get_buf(win)
-                        if vim.bo[buf].filetype == "OverseerList" or task_bufs[buf] then
-                            pcall(vim.api.nvim_win_close, win, false)
-                            closed = true
-                        end
+                    if vim.api.nvim_win_is_valid(win) and is_overseer(vim.api.nvim_win_get_buf(win)) then
+                        to_close_set[win] = true
+                        table.insert(to_close_list, win)
                     end
                 end
-                if not closed then
+
+                if #to_close_list == 0 then
                     require("overseer").open({ enter = true, direction = "bottom" })
+                    return
+                end
+
+                -- If we're currently in a window we're about to close, hop back to
+                -- the previous window first so focus lands where the user came from.
+                if to_close_set[vim.api.nvim_get_current_win()] then
+                    local prev = vim.fn.win_getid(vim.fn.winnr("#"))
+                    if prev ~= 0 and vim.api.nvim_win_is_valid(prev) and not to_close_set[prev] then
+                        vim.api.nvim_set_current_win(prev)
+                    end
+                end
+                for _, win in ipairs(to_close_list) do
+                    pcall(vim.api.nvim_win_close, win, false)
                 end
             end,
-            desc = "Toggle overseer (panel + outputs, focus on open)",
+            desc = "Toggle overseer",
         },
         {
             "<leader>uO",
@@ -50,7 +65,7 @@ return {
                     require("overseer").open({ enter = true, direction = "bottom" })
                 end
             end,
-            desc = "Focus task list (toggle)",
+            desc = "Focus task list",
         },
         { "<leader>ur", "<cmd>OverseerRun<CR>",         desc = "Run task" },
         { "<leader>ua", "<cmd>OverseerQuickAction<CR>", desc = "Task quick action" },
@@ -65,7 +80,7 @@ return {
                 -- Overseer's auto-preview in the panel (same row as the task list)
                 -- is ignored on purpose — we want the big vsplit, not the preview.
                 ["<CR>"] = {
-                    desc = "Open task output (reuse existing vsplit or create new)",
+                    desc = "Open task output",
                     callback = function()
                         local sb = require("overseer.task_list.sidebar").get()
                         if not sb then

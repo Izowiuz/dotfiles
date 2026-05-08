@@ -16,7 +16,7 @@ return {
         -- Pin
         { "<leader>bp", "<cmd>BufferLineTogglePin<CR>", desc = "Pin/unpin buffer" },
         -- Pick
-        { "<leader>bb", "<cmd>BufferLinePick<CR>", desc = "Pick buffer (jump letter)" },
+        { "<leader>bb", "<cmd>BufferLinePick<CR>", desc = "Pick buffer" },
         { "<leader>bD", "<cmd>BufferLinePickClose<CR>", desc = "Pick buffer to close" },
     },
     opts = {

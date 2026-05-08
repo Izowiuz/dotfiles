@@ -9,7 +9,7 @@ return {
     },
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-        { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit (status)" },
+        { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit" },
         { "<leader>gf", "<cmd>LazyGitCurrentFile<CR>", desc = "LazyGit for current file" },
         { "<leader>gl", "<cmd>LazyGitFilter<CR>", desc = "LazyGit log filter" },
     },

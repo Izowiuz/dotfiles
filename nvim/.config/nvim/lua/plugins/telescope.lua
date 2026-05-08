@@ -27,6 +27,10 @@ return {
         { "<leader>sR", "<cmd>Telescope resume<CR>", desc = "Resume last picker" },
         { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "Command palette" },
         { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
+        -- LSP / diagnostics
+        { "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", desc = "Document symbols" },
+        { "<leader>fS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Workspace symbols" },
+        { "<leader>xd", "<cmd>Telescope diagnostics<CR>", desc = "All diagnostics" },
         -- UI
         { "<leader>uC", "<cmd>Telescope colorscheme<CR>", desc = "Switch colorscheme" },
     },
