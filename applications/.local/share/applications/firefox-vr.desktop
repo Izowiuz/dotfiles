@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Firefox VR
+Exec=flatpak run org.mozilla.firefox --no-remote -P vr
+Icon=org.mozilla.firefox
+NotShowIn=KDE;
